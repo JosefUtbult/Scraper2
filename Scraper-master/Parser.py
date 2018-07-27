@@ -29,6 +29,8 @@ def append_words(word_list, site):
 
             word_list.append(word)
 
+        file.close()
+
     words_append = parse_site(site)
 
     words_append = parse_list(words_append)

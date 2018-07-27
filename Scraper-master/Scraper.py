@@ -8,15 +8,23 @@ global_run = True
 
 def main():
 
-    site_buffer = []
+    try:
+        site_buffer = []
 
-    _thread.start_new_thread(parse_site, (site_buffer, ))
+        _thread.start_new_thread(parse_site, (site_buffer,))
 
-    for i in range(0, 10):
-        _thread.start_new_thread(load_site, (site_buffer, ))
+        for i in range(0, 10):
+            _thread.start_new_thread(load_site, (site_buffer,))
 
-    while True:
-        pass
+        while True:
+            pass
+
+    except:
+
+        global_run = False
+
+        print("\n")
+        return 0
 
 
 def parse_site(site_buffer):
