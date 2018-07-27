@@ -6,7 +6,7 @@ illegalText = ["<", ">", "=", "!DOCTYPE", "<script>", "</script>", "/", u"\u005C
 
 
 
-def append_words(word_list):
+def append_words(word_list, site):
     file = ""
 
     if len(word_list) == 0:
@@ -29,7 +29,7 @@ def append_words(word_list):
 
             word_list.append(word)
 
-    words_append = parse_site('https://sv.wikipedia.org/wiki/Special:Slumpsida')
+    words_append = parse_site(site)
 
     words_append = parse_list(words_append)
 
@@ -47,19 +47,16 @@ def append_words(word_list):
 
 def parse_list(inputList):
 
-
-
     return list(set(map(lambda x: str(x).lower(), inputList)))
 
 
-def parse_site(url):
-    text = str(urllib.request.urlopen(url).read())
+def parse_site(site):
 
     output = []
 
     try:
 
-        temp = text.split("<p>")[1:]
+        temp = site.split("<p>")[1:]
 
         for i in range(0, len(temp)):
 
